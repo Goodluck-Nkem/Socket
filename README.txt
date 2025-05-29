@@ -16,7 +16,7 @@ Create a socket
 Connect to a Server, get Server fd
 send and recv (or read and write)
 
-A good client should server to refuse connection
+A good client should handle when server to refuses connection, or when server is not active
 
 Observation
 -----------
