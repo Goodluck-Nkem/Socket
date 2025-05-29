@@ -20,7 +20,8 @@ A good client should handle when server to refuses connection, or when server is
 
 Observation
 -----------
-sends are fused together
+sends are fused together.
+I noticed server abruptly ended after client closed socket and a write was attempted, I shall investigate this later
 
 Task
 ----

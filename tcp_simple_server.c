@@ -49,21 +49,23 @@ int main(void)
     printf("%i bytes sent!\n", bw);
     bw = send(client_fd, rules2, sizeof(rules2) - 1, 0);
     printf("%i bytes sent!\n", bw);
-    int running = 1;
-    while (running)
+    while (1)
     {
         bw = send(client_fd, prompt, sizeof(prompt) - 1, 0);
         printf("%i bytes sent!\n", bw);
         br = recv(client_fd, response, BUFFSIZE, 0);
-        printf("%i bytes received!\n", br);
-        
+        printf("%i byte(s) received!\n", br);
+
         int com_key = rand() % 3;
+        char your_play = toupper(response[0]);
+        char com_play = play_map[com_key];
+        if ('0' == your_play || 'E' == your_play)
+            break;
+
         bw = send(client_fd, computer_tells, sizeof(computer_tells) - 1, 0);
         bw += send(client_fd, object_map[com_key], strlen(object_map[com_key]), 0);
         printf("%i bytes sent!\n", bw);
 
-        char your_play = toupper(response[0]);
-        char com_play = play_map[com_key];
         switch (your_play)
         {
         case 'R':
@@ -139,11 +141,6 @@ int main(void)
                 bw += send(client_fd, retry, sizeof(retry) - 1, 0);
                 printf("%i bytes sent!\n", bw);
             }
-            break;
-
-        case '0':
-        case 'E':
-            running = 0;
             break;
 
         default:
