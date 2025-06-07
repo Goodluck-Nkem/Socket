@@ -8,16 +8,23 @@
 #include <fcntl.h>
 
 #define SERVER_PORT 50000
-#define SERVER_ADDRESS "127.0.0.1"
-#define BUFFSIZE 1024
+#define BUFFSIZE 2048
 
 char play, response[BUFFSIZE];
+char server_address[32];
 
 int main(void)
 {
-    struct sockaddr_in addr = {.sin_addr.s_addr = inet_addr(SERVER_ADDRESS),
-                               .sin_family = AF_INET,
-                               .sin_port = htons(SERVER_PORT)};
+	/* Enter Server Address, without trailing line from fgets(), Ctrl+D selects 127.0.0.1 */
+	printf("Enter Server Address: ");
+	if(fgets(server_address, sizeof(server_address), stdin))
+		server_address[strlen(server_address) - 1] = 0;
+	else
+		strcpy(server_address, "127.0.0.1");
+
+	struct sockaddr_in addr = {.sin_addr.s_addr = inet_addr(server_address),
+		.sin_family = AF_INET,
+		.sin_port = htons(SERVER_PORT)};
     int br, addrlen = sizeof(addr), conn_sock = socket(AF_INET, SOCK_STREAM, 0);
 
     int error, flag = fcntl(conn_sock, F_GETFL, 0); /* get current flags */

@@ -8,7 +8,7 @@
 #include <ctype.h>
 
 #define PORT 50000
-#define ADDRESS "127.0.0.1"
+#define ADDRESS "0.0.0.0"
 #define BUFFSIZE 1024
 
 char rules1[] = "Welcome to Rock, Paper, Scissors.\n";

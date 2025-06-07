@@ -1,4 +1,5 @@
-For both unix and Windows
+# Brief README
+
 
 Server
 ------
@@ -12,6 +13,7 @@ Server Prompts, Client Responds
 
 Client
 ------
+Select server address.
 Create a socket
 Connect to a Server, get Server fd
 send and recv (or read and write)
@@ -29,6 +31,7 @@ A simple Rock, Paper, Scissor Game with Scores.
 Rock beat Scissor.
 Scissor beat Paper.
 Paper beat Rock.
+Enter E to Exit.
 
 Later may add:
 - Multiple Client via User Login
